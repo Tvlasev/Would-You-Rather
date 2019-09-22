@@ -1,0 +1,22 @@
+.menu {
+  display: block;
+  width: 100vw;
+  height: 6vh;
+  background-color: #000000;
+  text-align: left;
+}
+
+.menu-item {
+  color: #ffffff;
+  display: inline-block;
+  padding: 12px;
+}
+
+.welcome-message{
+  float: right;
+}
+
+.logout{
+  color: #ff0000;
+  float: right;
+}
