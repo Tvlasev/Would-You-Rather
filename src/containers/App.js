@@ -6,6 +6,7 @@ import './App.css'
 import Menu from '../components/Menu/Menu'
 import Login from './Login/Login'
 import Page404 from '../components/page404'
+import PrivateRoute from '../components/PrivateRoute'
 import Home from './Home/Home'
 import AddQuestion from './AddQuestion/AddQuestion'
 import LeaderBoard from './LeaderBoard/LeaderBoard'
@@ -23,7 +24,7 @@ class App extends Component {
   }
 
   render() {
-    const { authUser } = this.props
+    const { authUser, isAuthenticated } = this.props
     const { showMenu } =  this.state
     console.log(showMenu)
     return (
@@ -33,12 +34,12 @@ class App extends Component {
         }
           <div className="page-content">
           <Switch>
-            <Route exact path="/" render={props => < Home/>} />
+            <PrivateRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
             <Route exact path="/login" render={props => <Login handleShowMenu={this.handleShowMenu}/>} />
-            <Route exact path="/add-question" render={props => < AddQuestion/>} />
-            <Route exact path="/leader-board" render={props => < LeaderBoard/>} />
-            <Route exact path="/questions" render={props => < Questions/>} />
-            <Route component={Page404} />
+            <PrivateRoute exact path="/add-question" component={AddQuestion} isAuthenticated={isAuthenticated} />
+            <PrivateRoute exact path="/leader-board" component={LeaderBoard} isAuthenticated={isAuthenticated} />
+            <PrivateRoute exact path="/questions" component={Questions} isAuthenticated={isAuthenticated}/>
+            <PrivateRoute component={Page404} />
           </Switch>
           </div>
       </Fragment>
@@ -48,7 +49,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    authUser: state.setAuthUser.authUser
+    authUser: state.setAuthUser.authUser,
+    isAuthenticated: state.setAuthUser.isAuthenticated
   }
 }
 

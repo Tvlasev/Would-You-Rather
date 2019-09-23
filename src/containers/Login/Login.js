@@ -15,17 +15,17 @@ class Login extends Component{
   
 
   render(){
-    const { users, authUser } = this.props
+    const { users, authUser, isAuthenticated  } = this.props
     const userNames = Object.values(users)
     console.log(this.props)
     
     return(
       <Fragment>
         <div className='login-box'>
-          <h1>Welcome! Please Sign in to your account</h1>
+          <h1>Welcome! Please choose an account to Sign in</h1>
           <select 
             onChange={(e) => this.props.setAuthUser(e.target.value)} 
-            defaultValue={authUser !== '' ? authUser : ''} 
+            defaultValue={isAuthenticated ? authUser : ''} 
             className='users-dropdown'
           >
             <option value='' disabled>Select a user</option>
@@ -52,7 +52,8 @@ const mapStateToProps = state => {
     users: state.getUsers.users,
     isPending: state.getUsers.isPending,
     error: state.getUsers.error,
-    authUser: state.setAuthUser.authUser
+    authUser: state.setAuthUser.authUser,
+    isAuthenticated: state.setAuthUser.isAuthenticated
   }
 }
 
