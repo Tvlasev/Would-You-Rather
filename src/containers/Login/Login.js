@@ -17,6 +17,7 @@ class Login extends Component{
   render(){
     const { users, authUser } = this.props
     const userNames = Object.values(users)
+    console.log(this.props)
     
     return(
       <Fragment>
@@ -36,7 +37,7 @@ class Login extends Component{
           </select>
           <div className='login-button'>
             {this.isUserSelected()
-              ? (<Link to='/'><button>Login</button></Link>)
+              ? (<Link to='/'><button onClick={() => this.props.handleShowMenu()}>Login</button></Link>)
               : (<div><button>Login</button><p>Please select a user to log-in</p></div>)
             }
           </div>
