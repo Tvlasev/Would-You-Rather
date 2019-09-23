@@ -1,0 +1,9 @@
+.page-content{
+  border: 1px solid red;
+  width: 60vw;
+  height: 80vh;
+  text-align: center;
+  margin: auto;
+  margin-top: 80px;
+  padding: 2em;
+}

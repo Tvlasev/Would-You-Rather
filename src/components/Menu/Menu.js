@@ -5,12 +5,12 @@ import './Menu.css'
 const Menu = () => {
   return(
     <Fragment>
-      <div class="menu">
-        <Link to='/' class="menu-item">Home</Link>
-        <Link to='/add-question' class="menu-item">Add new Question</Link>
-        <Link to='/leader-board' class="menu-item">Leader Board</Link>
-        <span class="menu-item welcome-message">Welcome, username!</span>
-        <Link to='/login' class="menu-item logout">Logout</Link>
+      <div className="menu">
+        <Link to='/' className="menu-item">Home</Link>
+        <Link to='/add-question' className="menu-item">Add new Question</Link>
+        <Link to='/leader-board' className="menu-item">Leader Board</Link>
+        <span className="menu-item welcome-message">Welcome, username!</span>
+        <Link to='/login' className="menu-item logout">Logout</Link>
       </div>
     </Fragment>
   )
