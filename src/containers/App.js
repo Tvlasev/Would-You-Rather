@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getUsers } from '../actions/Users'
 import './App.css'
 import Menu from '../components/Menu/Menu'
-import Login from '../components/Login/Login'
+import Login from './Login/Login'
 import Page404 from '../components/page404'
 import Home from './Home/Home'
 import AddQuestion from './AddQuestion/AddQuestion'
@@ -13,16 +12,12 @@ import Questions from './Questions/Questions'
 
 
 class App extends Component {
-
-  componentDidMount = () => {
-    this.props.getUsers()
-  }
-
   render() {
-    console.log(this.props.users)
+    const { authUser } = this.props
+
     return (
       <Fragment>
-        <Menu />
+        <Menu authUser={authUser}/>
           <div className="page-content">
           <Switch>
             <Route exact path="/" render={props => < Home/>} />
@@ -40,16 +35,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.getUsers.users,
-    isPending: state.getUsers.isPending,
-    error: state.getUsers.error,
+    authUser: state.setAuthUser.authUser
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUsers: () => dispatch(getUsers())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App)
