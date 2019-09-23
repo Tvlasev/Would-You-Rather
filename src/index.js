@@ -6,11 +6,12 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { getUsers} from './reducers/Users'
 import { setAuthUser } from './reducers/setAuthUser'
+import { getQuestions } from './reducers/Questions'
 import { BrowserRouter } from 'react-router-dom'
 import App from './containers/App'
 import './index.css'
 
-const rootReducer = combineReducers({ getUsers, setAuthUser })
+const rootReducer = combineReducers({ getUsers, setAuthUser, getQuestions })
 const logger = createLogger()
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger))
 

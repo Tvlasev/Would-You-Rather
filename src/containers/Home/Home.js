@@ -1,7 +1,17 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { getUsers } from '../../actions/Users'
+import { getQuestions } from '../../actions/Questions'
 
 class Home extends Component {
+
+  componentDidMount = () => {
+    this.props.getUsers()
+    this.props.getQuestions()
+  }
+
   render(){
+    console.log(this.props)
     return(
       <Fragment>
         Home page
@@ -10,4 +20,22 @@ class Home extends Component {
   }
 }
 
-export default Home
+const mapStateToProps = state => {
+  return {
+    users: state.getUsers.users,
+    isPendingUsers: state.getUsers.isPending,
+    errorUsers: state.getUsers.error,
+    questions: state.getQuestions.questions,
+    isPendingQuestions: state.getQuestions.isPending,
+    errorQuestions: state.getQuestions.error,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getUsers: () => dispatch(getUsers()),
+    getQuestions: () => dispatch(getQuestions())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
