@@ -26,7 +26,6 @@ class App extends Component {
   render() {
     const { authUser, isAuthenticated } = this.props
     const { showMenu } =  this.state
-    console.log(showMenu)
     return (
       <Fragment>
         {

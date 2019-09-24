@@ -1,0 +1,18 @@
+.question-card{
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  box-shadow: 2px 2px #ccc;
+  background: #add3e6;
+  width: 400px;
+  height: 200px;
+  text-align: left;
+  margin: 10px;
+  padding: 5px;
+  float: left;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  float: right;
+}

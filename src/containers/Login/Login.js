@@ -13,11 +13,9 @@ class Login extends Component{
 
   isUserSelected = () => this.props.authUser === "" ? false : true
   
-
   render(){
     const { users, authUser, isAuthenticated  } = this.props
     const userNames = Object.values(users)
-    console.log(this.props)
     
     return(
       <Fragment>

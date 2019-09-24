@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getUsers } from '../../actions/Users'
 import { getQuestions } from '../../actions/Questions'
+import QuestionsCards from '../../components/QuestionsCards/QuestionsCards'
 
 class Home extends Component {
 
@@ -11,10 +12,10 @@ class Home extends Component {
   }
 
   render(){
-    console.log(this.props)
+    const { questions, users } = this.props
     return(
       <Fragment>
-        Home page
+        <QuestionsCards questions={questions} users={users}/>
       </Fragment>
     )
   }

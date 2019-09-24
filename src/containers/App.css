@@ -1,8 +1,8 @@
 .page-content{
-  border: 1px solid red;
-  width: 60vw;
-  height: 80vh;
+  width: 80vw;
+  height: 100vh;
   text-align: center;
+  vertical-align: middle;
   margin: auto;
   margin-top: 80px;
   padding: 2em;
