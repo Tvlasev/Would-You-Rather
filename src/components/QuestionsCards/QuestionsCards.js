@@ -5,7 +5,7 @@ import "./QuestionsCards.css"
 const QuestionsCards = ({questions, users}) => {
   const allQuestions = Object.values(questions)
   const allUsers = Object.values(users)
-  
+
   return(
     <div>
       {allQuestions.map(q => {
