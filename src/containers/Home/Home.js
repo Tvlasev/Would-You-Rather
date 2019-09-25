@@ -12,10 +12,10 @@ class Home extends Component {
   }
 
   render(){
-    const { questions, users } = this.props
+    const { answeredQuestions, users, unansweredQuestions } = this.props
     return(
       <Fragment>
-        <QuestionsCards questions={questions} users={users}/>
+        <QuestionsCards answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions} users={users}/>
       </Fragment>
     )
   }
@@ -26,12 +26,17 @@ const mapStateToProps = state => {
   const allQuestions = Object.values(state.getQuestions.questions)
 
   const user = allUsers.find(user => user.name === state.setAuthUser.authUser)
-  const answeredQuestionsIDs = Object.keys(user.answers)
+  let answeredQuestions= []
+  let unansweredQuestions = []
 
-  const answeredQuestions = allQuestions.filter(allQ => answeredQuestionsIDs.some(q => allQ.id === q))
-    .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
-  const unansweredQuestions = allQuestions.filter(q => !answeredQuestions.includes(q))
-    .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+  if(user){
+    const answeredQuestionsIDs = Object.keys(user.answers)
+
+    answeredQuestions = allQuestions.filter(allQ => answeredQuestionsIDs.some(q => allQ.id === q))
+      .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+    unansweredQuestions = allQuestions.filter(q => !answeredQuestions.includes(q))
+      .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+  }
 
   return {
     users: state.getUsers.users,
