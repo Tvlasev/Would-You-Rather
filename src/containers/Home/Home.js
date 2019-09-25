@@ -22,6 +22,17 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
+  const allUsers = Object.values(state.getUsers.users)
+  const allQuestions = Object.values(state.getQuestions.questions)
+
+  const user = allUsers.find(user => user.name === state.setAuthUser.authUser)
+  const answeredQuestionsIDs = Object.keys(user.answers)
+
+  const answeredQuestions = allQuestions.filter(allQ => answeredQuestionsIDs.some(q => allQ.id === q))
+    .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+  const unansweredQuestions = allQuestions.filter(q => !answeredQuestions.includes(q))
+    .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+
   return {
     users: state.getUsers.users,
     isPendingUsers: state.getUsers.isPending,
@@ -29,6 +40,9 @@ const mapStateToProps = state => {
     questions: state.getQuestions.questions,
     isPendingQuestions: state.getQuestions.isPending,
     errorQuestions: state.getQuestions.error,
+    authUser: state.setAuthUser.authUser,
+    answeredQuestions: answeredQuestions,
+    unansweredQuestions: unansweredQuestions
   }
 }
 
