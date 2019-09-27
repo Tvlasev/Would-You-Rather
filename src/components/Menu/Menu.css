@@ -1,5 +1,5 @@
 .menu {
-  display: block;
+  display: inline-block;
   width: 100vw;
   height: 6vh;
   background-color: #000000;
@@ -12,11 +12,10 @@
   padding: 12px;
 }
 
-.welcome-message{
-  float: right;
-}
-
 .logout{
-  color: #ff0000;
-  float: right;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
 }

@@ -10,7 +10,6 @@ import PrivateRoute from '../components/PrivateRoute'
 import Home from './Home/Home'
 import AddQuestion from './AddQuestion/AddQuestion'
 import LeaderBoard from './LeaderBoard/LeaderBoard'
-import Questions from './Questions/Questions'
 import QuestionDetailsPage from './QuestionDetailsPage/QuestionDetailsPage'
 
 
@@ -38,9 +37,8 @@ class App extends Component {
             <Route exact path="/login" render={props => <Login handleShowMenu={this.handleShowMenu}/>} />
             <PrivateRoute exact path="/add-question" component={AddQuestion} isAuthenticated={isAuthenticated} />
             <PrivateRoute exact path="/leader-board" component={LeaderBoard} isAuthenticated={isAuthenticated} />
-            <PrivateRoute exact path="/questions" component={Questions} isAuthenticated={isAuthenticated}/>
-            <Route exact path="/question/:questiondID" component={QuestionDetailsPage} />
-            <PrivateRoute component={Page404} />
+            <PrivateRoute exact path="/question/:questiondID" isAuthenticated={isAuthenticated} component={QuestionDetailsPage} />
+            <Route component={Page404} />
           </Switch>
           </div>
       </Fragment>
