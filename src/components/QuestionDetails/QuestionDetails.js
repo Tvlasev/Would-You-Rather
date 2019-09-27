@@ -14,6 +14,9 @@ const QuestionDetails = ({users, questions, authUser, history}) => {
   const avatar = author.avatarURL
   const answeredQuestionsIDs = Object.keys(user.answers)
   const isQuestionAnswered = answeredQuestionsIDs.includes(question.id)
+  const votesOptionOne = question.optionOne.votes.length
+  const votesOptionTwo = question.optionTwo.votes.length
+  const votes = votesOptionOne + votesOptionTwo
   let answerOption = ''
 
   if(isQuestionAnswered){
@@ -21,11 +24,18 @@ const QuestionDetails = ({users, questions, authUser, history}) => {
   }
 
   return(
-    <div className="question-card">
+    <div className="question-card" style={isQuestionAnswered ? {width: '500px', height: '500px'} : {width: '500px', height: '300px'} }>
       <HeaderQuestion avatar={avatar} author={question.author} optionOne={question.optionOne.text} optionTwo={question.optionTwo.text}/>
       {
         isQuestionAnswered 
-          ? (<AnsweredQuestion answerOption={answerOption} optionOne={question.optionOne.text} optionTwo={question.optionTwo.text}/>)
+          ? (<AnsweredQuestion 
+              answerOption={answerOption} 
+              optionOne={question.optionOne.text} 
+              optionTwo={question.optionTwo.text}
+              votes={votes}
+              votesOptionOne={votesOptionOne}
+              votesOptionTwo={votesOptionTwo}
+            />)
           : (<UnansweredQuestion optionOne={question.optionOne.text} optionTwo={question.optionTwo.text}/>)
       }
     </div>

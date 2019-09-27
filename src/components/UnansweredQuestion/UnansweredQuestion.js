@@ -20,9 +20,9 @@ const UnansweredQuestion = ({optionOne, optionTwo}) => {
             labelPlacement="end"
           />
         </RadioGroup>
-        <div className="answer-button">
-          <Button fullWidth variant="contained" color='primary'>Answer</Button>
-        </div>
+      </div>
+      <div className="answer-button">
+        <Button fullWidth variant="contained" color='primary'>Answer</Button>
       </div>
     </div>
   )
