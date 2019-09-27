@@ -1,0 +1,15 @@
+.new-question-container{
+  border: 1px solid #3f51b5;
+  border-radius: 25px;
+  box-shadow: 2px 2px 2px 2px #673ab7;
+  background: #add3e6;
+  width: 400px;
+  height: 340px;
+  text-align: left;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+}
+

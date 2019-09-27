@@ -18,7 +18,7 @@ class LeaderBoard extends Component {
       <div className="users-container">
         {
           allUsers.sort((a, b) => (Object.keys(a.answers).length + a.questions.length) < (Object.keys(b.answers).length + b.questions.length) ? 1 : -1)
-            .map((user,i) => (
+            .map((user, i) => (
               <UserCard 
                 key={user.id}
                 rank={i+1}
