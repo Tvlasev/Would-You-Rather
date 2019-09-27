@@ -9,6 +9,7 @@ import { setAuthUser } from './reducers/setAuthUser'
 import { getQuestions } from './reducers/Questions'
 import { BrowserRouter } from 'react-router-dom'
 import App from './containers/App'
+import 'semantic-ui-css/semantic.min.css'
 import './index.css'
 
 const rootReducer = combineReducers({ getUsers, setAuthUser, getQuestions })

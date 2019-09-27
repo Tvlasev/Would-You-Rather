@@ -1,3 +1,7 @@
+.question-body{
+  padding-top: 50px;
+}
+
 .answer-button{
   padding-top: 10px;
   position: absolute;
@@ -7,3 +11,4 @@
   margin: auto;
   padding-left: 100px;
 }
+

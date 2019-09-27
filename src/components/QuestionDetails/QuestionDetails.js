@@ -24,7 +24,8 @@ const QuestionDetails = ({users, questions, authUser, history}) => {
   }
 
   return(
-    <div className="question-card" style={isQuestionAnswered ? {width: '500px', height: '500px'} : {width: '500px', height: '300px'} }>
+    <div className="question-card" 
+      style={isQuestionAnswered ? {width: '500px', height: '400px'} : {width: '500px', height: '300px'} }>
       <HeaderQuestion avatar={avatar} author={question.author} optionOne={question.optionOne.text} optionTwo={question.optionTwo.text}/>
       {
         isQuestionAnswered 
