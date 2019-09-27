@@ -1,0 +1,14 @@
+.answered-container{
+  padding: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+}
+
+.answer{
+  border: 1px solid #3f51b5;
+  border-radius: 25px;
+  box-shadow: 2px 2px #673ab7;
+  padding: 20px;
+  margin-top: 10px;
+}

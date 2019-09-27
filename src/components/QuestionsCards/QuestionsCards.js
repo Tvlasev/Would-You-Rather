@@ -43,20 +43,22 @@ class QuestionsCards extends Component{
             ? unansweredQuestions.map(q => {
                 const author = allUsers.find(user => user.id === q.author) 
                 return (<QuestionCard 
-                  key={q.id} 
+                  key={q.id}
+                  questionID={q.id} 
                   optionOne={q.optionOne.text} 
                   optionTwo={q.optionTwo.text} 
-                  author={author.name} 
+                  author={author.id} 
                   avatar={author.avatarURL}
                   />)
               })
             : answeredQuestions.map(q => {
                 const author = allUsers.find(user => user.id === q.author) 
                 return (<QuestionCard 
-                  key={q.id} 
+                  key={q.id}
+                  questionID={q.id} 
                   optionOne={q.optionOne.text} 
                   optionTwo={q.optionTwo.text} 
-                  author={author.name} 
+                  author={author.id} 
                   avatar={author.avatarURL}
                   />)
               })
