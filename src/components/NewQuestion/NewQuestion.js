@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './NewQuestion.css'
 import { TextField, Button } from '@material-ui/core'
+import { connect } from 'react-redux'
+import { saveNewQuestion } from '../../actions/Questions'
+import { Link } from 'react-router-dom'
 
 class NewQuestion extends Component{
 
@@ -48,18 +51,27 @@ class NewQuestion extends Component{
           />
         </div>
         <div>
-          <Button 
-            style={{marginTop: '20px'}} 
-            fullWidth variant="contained" 
-            color='primary'
-            disabled={optionOne === '' || optionTwo === ''}
-          >
-            Create Question
-          </Button>
+          <Link to='/'>
+            <Button 
+              style={{marginTop: '20px'}} 
+              fullWidth variant="contained" 
+              color='primary'
+              disabled={optionOne === '' || optionTwo === ''}
+              onClick={this.props.saveNewQuestion({ optionOneText: this.state.optionOne, optionTwoText: this.state.optionTwo, authUser: user.id })}
+            >
+              Create Question
+            </Button>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
-export default NewQuestion
+const mapDispatchToProps = dispatch => {
+  return{
+    saveNewQuestion: (obj) => saveNewQuestion(obj)
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewQuestion)

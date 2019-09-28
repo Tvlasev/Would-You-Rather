@@ -37,7 +37,14 @@ const QuestionDetails = ({users, questions, authUser, history}) => {
               votesOptionOne={votesOptionOne}
               votesOptionTwo={votesOptionTwo}
             />)
-          : (<UnansweredQuestion optionOne={question.optionOne.text} optionTwo={question.optionTwo.text}/>)
+          : (<UnansweredQuestion 
+              optionOne={question.optionOne.text} 
+              optionTwo={question.optionTwo.text}
+              users={users}
+              questions={questions}
+              questionID={question.id}
+              authedUser={user.id}
+            />)
       }
     </div>
   )

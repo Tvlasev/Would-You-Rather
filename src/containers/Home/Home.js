@@ -38,9 +38,9 @@ const mapStateToProps = state => {
     const answeredQuestionsIDs = Object.keys(user.answers)
 
     answeredQuestions = allQuestions.filter(allQ => answeredQuestionsIDs.some(q => allQ.id === q))
-      .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+      .sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1)
     unansweredQuestions = allQuestions.filter(q => !answeredQuestions.includes(q))
-      .sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1)
+      .sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1)
   }
 
   return {

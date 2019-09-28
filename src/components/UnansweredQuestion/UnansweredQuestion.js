@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Radio, RadioGroup, FormControlLabel, Button } from '@material-ui/core/'
 import "./UnansweredQuestion.css"
+import { connect } from 'react-redux'
+import { saveQuestionAnswer } from '../../actions/Questions'
+import { Link } from '@material-ui/core'
 
 class UnansweredQuestion extends Component{
 
@@ -10,9 +13,14 @@ class UnansweredQuestion extends Component{
 
   handleAnswer = e => this.setState({...this.state, option: e.target.value})
 
+  handleSaveAnswer = (obj) => {
+    this.props.saveQuestionAnswer(obj)
+      .then(data => console.log(data))
+      .catch(e => console.log(e))
+  }
+
   render(){
-    const {optionOne, optionTwo} = this.props
-    
+    const {optionOne, optionTwo, authedUser, questionID} = this.props
     return(
       <div>
         <div className="question-body">
@@ -34,11 +42,25 @@ class UnansweredQuestion extends Component{
           </RadioGroup>
         </div>
         <div className="answer-button">
-          <Button disabled={this.state.option === ''} fullWidth variant="contained" color='primary'>Answer</Button>
+          <Link to='/login'>
+            <Button 
+              onClick={() => this.handleSaveAnswer({authedUser: authedUser, qid: questionID, answer: this.state.option})} 
+              disabled={this.state.option === ''} 
+              fullWidth 
+              variant="contained" 
+              color='primary'>Answer
+            </Button>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
-export default UnansweredQuestion
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionAnswer: (obj) => dispatch(saveQuestionAnswer(obj))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(UnansweredQuestion)
