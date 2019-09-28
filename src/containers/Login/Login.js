@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getUsers } from '../../actions/Users'
 import { setAuthUser } from '../../actions/setAuthUser'
 import { Link } from 'react-router-dom'
+import { CircularProgress } from '@material-ui/core'
 import './Login.css'
 
 class Login extends Component{
@@ -18,29 +19,31 @@ class Login extends Component{
     const userNames = Object.values(users)
     
     return(
-      <Fragment>
-        <div className='login-box'>
-          <h1>Welcome! Please choose an account to Sign in</h1>
-          <select 
-            onChange={(e) => this.props.setAuthUser(e.target.value)} 
-            defaultValue={isAuthenticated ? authUser : ''} 
-            className='users-dropdown'
-          >
-            <option value='' disabled>Select a user</option>
-            {userNames.map(user => {
-              return (
-                <option key={user.id} value={user.name}>{user.name}</option>
-              )
-            })}
-          </select>
-          <div className='login-button'>
-            {this.isUserSelected()
-              ? (<Link to='/'><button onClick={() => this.props.handleShowMenu()}>Login</button></Link>)
-              : (<div><button>Login</button><p>Please select a user to log-in</p></div>)
-            }
-          </div>
-        </div>
-      </Fragment>
+      Object.entries(users).length === 0 && users.constructor === Object 
+        ? (<div><CircularProgress /></div>)
+        : (<Fragment>
+            <div className='login-box'>
+              <h1>Welcome! Please choose an account to Sign in</h1>
+              <select 
+                onChange={(e) => this.props.setAuthUser(e.target.value)} 
+                defaultValue={isAuthenticated ? authUser : ''} 
+                className='users-dropdown'
+              >
+                <option value='' disabled>Select a user</option>
+                {userNames.map(user => {
+                  return (
+                    <option key={user.id} value={user.name}>{user.name}</option>
+                  )
+                })}
+              </select>
+              <div className='login-button'>
+                {this.isUserSelected()
+                  ? (<Link to='/'><button onClick={() => this.props.handleShowMenu()}>Login</button></Link>)
+                  : (<div><button>Login</button><p>Please select a user to log-in</p></div>)
+                }
+              </div>
+            </div>
+          </Fragment>)
     )
   }
 }

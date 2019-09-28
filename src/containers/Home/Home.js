@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getUsers } from '../../actions/Users'
 import { getQuestions } from '../../actions/Questions'
 import QuestionsCards from '../../components/QuestionsCards/QuestionsCards'
+import { CircularProgress } from '@material-ui/core'
 
 class Home extends Component {
 
@@ -14,9 +15,13 @@ class Home extends Component {
   render(){
     const { answeredQuestions, users, unansweredQuestions } = this.props
     return(
-      <Fragment>
-        <QuestionsCards answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions} users={users}/>
-      </Fragment>
+      (Object.entries(users).length === 0 && users.constructor === Object)
+      || answeredQuestions.length === 0
+      || unansweredQuestions.length === 0
+      ? (<div><CircularProgress /></div>)
+      : (<Fragment>
+          <QuestionsCards answeredQuestions={answeredQuestions} unansweredQuestions={unansweredQuestions} users={users}/>
+        </Fragment>)
     )
   }
 }
