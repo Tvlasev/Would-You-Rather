@@ -7,7 +7,7 @@ const Menu = ({authUser, setAuthUser, handleShowMenu}) => {
     <Fragment>
       <div className="menu">
         <Link to='/' className="menu-item">Home</Link>
-        <Link to='/add-question' className="menu-item">Add new Question</Link>
+        <Link to='/add' className="menu-item">Add new Question</Link>
         <Link to='/leaderboard' className="menu-item">Leader Board</Link>
         <div className="menu-item logout">
           <span style={{margin: '10px'}}>{`Welcome, ${authUser}!`}</span>
