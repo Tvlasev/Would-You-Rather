@@ -21,6 +21,7 @@ class App extends Component {
 
   handleShowMenu = () => {
     !this.state.showMenu ? this.setState({...this.state, showMenu: true}) : this.setState({...this.state, showMenu: false})
+
   }
 
   render() {

@@ -2,22 +2,35 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getUsers } from '../../actions/Users'
 import { setAuthUser } from '../../actions/setAuthUser'
-import { Link } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import { CircularProgress } from '@material-ui/core'
+import { compose } from 'redux'
 import './Login.css'
 
 class Login extends Component{
 
+  state = {
+    isButtonClicked: false
+  }
+
   componentDidMount = () => {
     this.props.getUsers()
   }
+
+  handleButtonClick = () => this.setState({...this.state, isButtonClicked: true})
 
   isUserSelected = () => this.props.authUser === "" ? false : true
   
   render(){
     const { users, authUser, isAuthenticated  } = this.props
     const userNames = Object.values(users)
-    
+    const {from} = this.props.location.state || {from: {pathname: '/'}}
+    console.log(this.props)
+
+    if (isAuthenticated && this.state.isButtonClicked) {
+      return <Redirect to={from}/>
+    }
+
     return(
       Object.entries(users).length === 0 && users.constructor === Object 
         ? (<div><CircularProgress /></div>)
@@ -38,7 +51,7 @@ class Login extends Component{
               </select>
               <div className='login-button'>
                 {this.isUserSelected()
-                  ? (<Link to='/'><button onClick={() => this.props.handleShowMenu()}>Login</button></Link>)
+                  ? (<button onClick={() => {this.props.handleShowMenu(); this.handleButtonClick();}}>Login</button>)
                   : (<div><button>Login</button><p>Please select a user to log-in</p></div>)
                 }
               </div>
@@ -65,4 +78,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+//export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(Login);
