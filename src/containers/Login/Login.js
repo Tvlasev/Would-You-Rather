@@ -32,7 +32,7 @@ class Login extends Component{
                 <option value='' disabled>Select a user</option>
                 {userNames.map(user => {
                   return (
-                    <option key={user.id} value={user.name}>{user.name}</option>
+                    <option key={user.id} value={user.id}>{user.id}</option>
                   )
                 })}
               </select>

@@ -30,7 +30,7 @@ const mapStateToProps = state => {
   const allUsers = Object.values(state.getUsers.users)
   const allQuestions = Object.values(state.getQuestions.questions)
 
-  const user = allUsers.find(user => user.name === state.setAuthUser.authUser)
+  const user = allUsers.find(user => user.id === state.setAuthUser.authUser)
   let answeredQuestions= []
   let unansweredQuestions = []
 

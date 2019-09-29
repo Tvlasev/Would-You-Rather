@@ -20,12 +20,12 @@ class NewQuestion extends Component{
     const { optionOne, optionTwo} = this.state
     const {users, authUser} = this.props
     const allUsers = Object.values(users)
-    const user = allUsers.find(user => user.name === authUser)
+    const user = allUsers.find(user => user.id === authUser)
     return(
       <div className="new-question-container">
         <div>
           <img alt='user-avatar' src={user.avatarURL} />
-          <h2>{user.name} asks</h2>
+          <h2>{user.id} asks</h2>
           <h3>Would You Rather</h3>
         </div>
         <div>

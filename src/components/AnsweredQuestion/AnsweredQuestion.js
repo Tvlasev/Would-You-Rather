@@ -5,7 +5,6 @@ import ProgressBar from "../ProgressBar/ProgressBar"
 import { Label } from 'semantic-ui-react'
 
 const AnsweredQuestion = ({optionOne, optionTwo, answerOption, votesOptionOne, votesOptionTwo, votes}) => {
-  console.log(answerOption)
   return(
     <div className="answered-container">
       <div className="answer">

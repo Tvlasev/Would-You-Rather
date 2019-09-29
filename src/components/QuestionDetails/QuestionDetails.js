@@ -10,7 +10,7 @@ const QuestionDetails = ({users, questions, authUser, history}) => {
   const path = history.location.pathname
   const question = allQuestions.find(q => path.includes(q.id))
   const author = allUsers.find(user => user.id === question.author)
-  const user = allUsers.find(user => user.name === authUser)
+  const user = allUsers.find(user => user.id === authUser)
   const avatar = author.avatarURL
   const answeredQuestionsIDs = Object.keys(user.answers)
   const isQuestionAnswered = answeredQuestionsIDs.includes(question.id)

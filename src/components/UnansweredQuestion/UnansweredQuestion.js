@@ -26,14 +26,14 @@ class UnansweredQuestion extends Component{
         <div className="question-body">
           <RadioGroup>
           <FormControlLabel
-              value="option1"
+              value="optionOne"
               control={<Radio color="primary" />}
               label={optionTwo}
               labelPlacement="end"
               onChange={(e) => this.handleAnswer(e)}
             />
             <FormControlLabel
-              value="option2"
+              value="optionTwo"
               control={<Radio color="primary" />}
               label={optionOne}
               labelPlacement="end"
@@ -42,7 +42,7 @@ class UnansweredQuestion extends Component{
           </RadioGroup>
         </div>
         <div className="answer-button">
-          <Link to='/login'>
+          <Link to='/'>
             <Button 
               onClick={() => this.handleSaveAnswer({authedUser: authedUser, qid: questionID, answer: this.state.option})} 
               disabled={this.state.option === ''} 
