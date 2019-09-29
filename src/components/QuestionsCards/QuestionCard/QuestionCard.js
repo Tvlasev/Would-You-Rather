@@ -9,7 +9,7 @@ const QuestionCard = ({optionOne, optionTwo, author, avatar, questionID}) => {
     <div className='questions-card'>
       <HeaderQuestion avatar={avatar} author={author} optionOne={optionOne} optionTwo={optionTwo}/>
       <div className='poll-button'>
-        <Link to={`/question/${questionID}`}><Button fullWidth variant="contained" color="primary" >
+        <Link to={`/questions/${questionID}`}><Button fullWidth variant="contained" color="primary" >
           View Poll
         </Button></Link>
       </div>

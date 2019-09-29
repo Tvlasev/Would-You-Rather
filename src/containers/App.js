@@ -36,8 +36,8 @@ class App extends Component {
             <PrivateRoute exact path="/" component={Home} isAuthenticated={isAuthenticated} />
             <Route exact path="/login" render={props => <Login handleShowMenu={this.handleShowMenu}/>} />
             <PrivateRoute exact path="/add-question" component={AddQuestion} isAuthenticated={isAuthenticated} />
-            <PrivateRoute exact path="/leader-board" component={LeaderBoard} isAuthenticated={isAuthenticated} />
-            <PrivateRoute exact path="/question/:questiondID" isAuthenticated={isAuthenticated} component={QuestionDetailsPage} />
+            <PrivateRoute exact path="/leaderboard" component={LeaderBoard} isAuthenticated={isAuthenticated} />
+            <PrivateRoute exact path="/questions/:questionID" isAuthenticated={isAuthenticated} component={QuestionDetailsPage} />
             <Route component={Page404} />
           </Switch>
           </div>

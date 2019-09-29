@@ -8,7 +8,7 @@ const Menu = ({authUser, setAuthUser, handleShowMenu}) => {
       <div className="menu">
         <Link to='/' className="menu-item">Home</Link>
         <Link to='/add-question' className="menu-item">Add new Question</Link>
-        <Link to='/leader-board' className="menu-item">Leader Board</Link>
+        <Link to='/leaderboard' className="menu-item">Leader Board</Link>
         <div className="menu-item logout">
           <span style={{margin: '10px'}}>{`Welcome, ${authUser}!`}</span>
           <Link onClick={() => {handleShowMenu(); setAuthUser("")}} to='/login'>Logout</Link>
