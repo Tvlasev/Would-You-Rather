@@ -25,7 +25,6 @@ class Login extends Component{
     const { users, authUser, isAuthenticated  } = this.props
     const userNames = Object.values(users)
     const {from} = this.props.location.state || {from: {pathname: '/'}}
-    console.log(this.props)
 
     if (isAuthenticated && this.state.isButtonClicked) {
       return <Redirect to={from}/>
