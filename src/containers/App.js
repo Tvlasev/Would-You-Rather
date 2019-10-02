@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAuthUser } from '../actions/setAuthUser'
+import { getQuestions } from '../actions/Questions'
 import './App.css'
 import Menu from '../components/Menu/Menu'
 import Login from './Login/Login'
@@ -19,13 +20,17 @@ class App extends Component {
     showMenu: false
   }
 
+  componentDidMount = () => {
+    this.props.getQuestions()
+  }
+
   handleShowMenu = () => {
     !this.state.showMenu ? this.setState({...this.state, showMenu: true}) : this.setState({...this.state, showMenu: false})
 
   }
 
   render() {
-    const { authUser, isAuthenticated } = this.props
+    const { authUser, isAuthenticated, questions } = this.props
     const { showMenu } =  this.state
     return (
       <Fragment>
@@ -38,7 +43,16 @@ class App extends Component {
             <Route exact path="/login" render={props => <Login handleShowMenu={this.handleShowMenu}/>} />
             <PrivateRoute exact path="/add" component={AddQuestion} isAuthenticated={isAuthenticated} />
             <PrivateRoute exact path="/leaderboard" component={LeaderBoard} isAuthenticated={isAuthenticated} />
-            <PrivateRoute exact path={isAuthenticated ? "/questions/:questionID" : '/question'} isAuthenticated={isAuthenticated} component={QuestionDetailsPage} />
+            {
+              Object.keys(questions).map( qid => (
+                <PrivateRoute
+                  key={qid}
+                  exact path={`/questions/${qid}`} 
+                  isAuthenticated={isAuthenticated} 
+                  component={QuestionDetailsPage} 
+                />
+              ))
+            }
             <Route component={Page404} />
           </Switch>
           </div>
@@ -50,13 +64,15 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     authUser: state.setAuthUser.authUser,
-    isAuthenticated: state.setAuthUser.isAuthenticated
+    isAuthenticated: state.setAuthUser.isAuthenticated,
+    questions: state.getQuestions.questions
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setAuthUser: (user) => dispatch(setAuthUser(user)) 
+    setAuthUser: (user) => dispatch(setAuthUser(user)),
+    getQuestions: () => dispatch(getQuestions()) 
   }
 }
 
