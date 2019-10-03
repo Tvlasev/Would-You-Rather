@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAuthUser } from '../actions/setAuthUser'
 import { getQuestions } from '../actions/Questions'
@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    const { authUser, isAuthenticated, questions } = this.props
+    const { authUser, isAuthenticated, questions, location } = this.props
     const { showMenu } =  this.state
     return (
       <Fragment>
@@ -53,7 +53,12 @@ class App extends Component {
                 />
               ))
             }
-            <Route component={Page404} />
+            {
+              isAuthenticated ? (<Route component={Page404} />) : (<Redirect to={{
+                pathname: '/login',
+                state: { from: location }
+              }}/>)
+            }
           </Switch>
           </div>
       </Fragment>
@@ -76,4 +81,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
